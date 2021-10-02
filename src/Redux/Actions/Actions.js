@@ -43,7 +43,7 @@ export function Clear(){
 export function FetchUser(email, password) {
     return function (dispatch) {
         dispatch(FetchUsersRequest());
-        axios.get(`http://${window.location.hostname}:4000/users?email=${email}&password=${password}`)
+        axios.get(`/users?email=${email}&password=${password}`)
             .then(res => {
                 const user = res.data[0];
                 console.log(user)
@@ -59,7 +59,7 @@ export function FetchUser(email, password) {
             })
             .catch(err => {
                 const errorMsg = err.message;
-                console.log(window.location.hostname)
+                console.log(err)
                 dispatch(FetchUsersFail(errorMsg));
             })
 
