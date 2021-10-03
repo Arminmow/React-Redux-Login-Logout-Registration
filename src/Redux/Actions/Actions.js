@@ -69,7 +69,7 @@ export function FetchUser(email, password) {
 export function FetchByCookie(id){
     return function (dispatch){
         dispatch(FetchUsersRequest());
-        axios.get(`http://${window.location.hostname}:4000/users?id=${id}`)
+        axios.get(`/users?id=${id}`)
             .then(res => {
                 const user = res.data[0]
                 dispatch(FetchUsersSuccess(user))
@@ -85,7 +85,7 @@ export function ClearStore(){
 
 export function UpdateUser(userInfo) {
     return function (dispatch) {
-        axios.patch(`http://${window.location.hostname}:4000/users/${userInfo.id}`, {
+        axios.patch(`/users/${userInfo.id}`, {
             id: userInfo.id,
             firstName: userInfo.firstName,
             lastName: userInfo.lastName,
@@ -111,7 +111,7 @@ export function UpdateUser(userInfo) {
 export function RegisterUser(firstName , lastName ,email , password){
     return function (dispatch){
         dispatch(FetchUsersRequest());
-        axios.post(`http://${window.location.hostname}:4000/users`, {
+        axios.post(`/users`, {
             firstName: firstName,
             lastName: lastName,
             email: email,
